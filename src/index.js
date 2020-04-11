@@ -19,7 +19,7 @@ for (const file of commandFiles) {
 client.on('message', (message) => {
   if (message.content.startsWith(prefix)) {
     const [commandName, ...args] = message.content.slice(prefix.length).split(/ +/)
-    const command = client.commands.get(commandName)
+    const command = client.commands.get(commandName.toLowerCase())
 
     if (command) {
       try {
