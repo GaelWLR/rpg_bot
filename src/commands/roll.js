@@ -1,47 +1,38 @@
 /** @typedef {import('discord.js').Message} Message */
 const i18n = require('../plugins/i18n')
+const diceService = require('../services/dice')
 
 module.exports = {
   name: 'roll',
-  description: 'Dice roll',
+  description: 'Roll one or more dice',
+
   /**
    * Command execution
    * @param {Message} message
    * @param {Array} args
    */
   execute(message, args) {
-    const diceTypes = [4, 6, 8, 10, 12, 20, 100]
-    const [number, diceType] = args[0]
+    const [number, type] = args[0]
       .toLowerCase()
       .split('d')
       .map((value) => parseInt(value))
 
-    if (diceTypes.includes(diceType)) {
+    if (diceService.types.includes(type)) {
       if (number && !isNaN(number)) {
-        const rolls = []
-        for (let i = 0; i < number; i++) {
-          rolls.push(this.getDiceRoll(diceType))
-        }
+        const rolls = diceService.multipleRoll(type, number)
         const roll = rolls.join(', ')
         const rollTotal = rolls.reduce((previousValue, currentValue) => previousValue + currentValue, 0)
 
-        message.channel.send(`${message.author} ${i18n.tn('dice_roll', number, { diceType, roll, rollTotal })}`)
+        message.channel.send(`${message.author} ${i18n.tn('dice_roll', number, { type, roll, rollTotal })}`)
       } else {
-        const roll = this.getDiceRoll(diceType)
+        const roll = diceService.roll(type)
 
-        message.channel.send(`${message.author} ${i18n.tn('dice_roll', 1, { diceType, roll })}`)
+        message.channel.send(`${message.author} ${i18n.tn('dice_roll', 1, { type, roll })}`)
       }
     } else {
-      message.channel.send(`Dice ${diceType} not supported!`)
+      message.channel.send(`Dice ${type} not supported!`)
     }
 
     message.delete()
-  },
-  /**
-   * Get a roll of a dice by is type
-   * @param {number} type
-   */
-  getDiceRoll(type) {
-    return Math.floor(Math.random() * (type - 1)) + 1
   },
 }
