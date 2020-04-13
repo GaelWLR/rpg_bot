@@ -8,7 +8,9 @@ This project is discord bot to play RPG on a server with my friends, and also a 
 npm i
 ```
 
-2. Launch bot
+2. Update config.json
+
+3. Launch bot
 
 ```
 node src/index.js
