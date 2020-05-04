@@ -1,3 +1,6 @@
 {
-  "dice_roll": "[,0] a essayé de lancé %s dé, pas très malin|[1] lance un d{{type}}, il fait {{roll}}|lance %sd{{type}}, il fait {{roll}} (total : {{rollTotal}})"
+  "arg_syntax_error": "Il y a une erreur de syntaxe. (Ex: {{example}})",
+  "dice_not_supported": "Dé {{type}} non supporté!",
+  "dice_roll": "[,0] a essayé de lancé %s dé, pas très malin|[1] lance un d{{type}}, il fait {{roll}}|lance %sd{{type}}, il fait {{roll}} (total : {{rollsTotal}})",
+  "dice_roll_with_modifier": "[,0] a essayé de lancé %s dé, pas très malin|[1] lance un d{{type}}{{modifier}}, il fait {{roll}}|lance %sd{{type}}{{modifier}}, il fait {{roll}} (total : {{rollsTotal}})"
 }

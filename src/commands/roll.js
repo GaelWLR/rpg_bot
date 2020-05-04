@@ -9,30 +9,44 @@ module.exports = {
   /**
    * Command execution
    * @param {Message} message
-   * @param {Array} args
+   * @param {string} arg
    */
-  execute(message, args) {
-    const [number, type] = args[0]
-      .toLowerCase()
-      .split('d')
-      .map((value) => parseInt(value))
+  execute(message, [arg]) {
+    let response = ''
 
-    if (diceService.types.includes(type)) {
-      if (number && !isNaN(number)) {
-        const rolls = diceService.multipleRoll(type, number)
-        const roll = rolls.join(', ')
-        const rollTotal = rolls.reduce((previousValue, currentValue) => previousValue + currentValue, 0)
+    if (arg.match(diceService.regex)) {
+      const [number, type, modifier] = arg
+        .toLowerCase()
+        .split(/d|(?=\+|\-)/g)
+        .map((value) => parseInt(value))
 
-        message.channel.send(`${message.author} ${i18n.tn('dice_roll', number, { type, roll, rollTotal })}`)
+      if (diceService.types.includes(type)) {
+        if (number) {
+          const { rolls, rollsTotal } = diceService.multipleRoll(type, number, modifier)
+          const roll = rolls.join(', ')
+
+          if (modifier) {
+            response = i18n.tn('dice_roll_with_modifier', number, { type, roll, rollsTotal, modifier })
+          } else {
+            response = i18n.tn('dice_roll', number, { type, roll, rollsTotal })
+          }
+        } else {
+          const roll = diceService.roll(type, modifier)
+
+          if (modifier) {
+            response = i18n.tn('dice_roll_with_modifier', 1, { type, roll, modifier })
+          } else {
+            response = i18n.tn('dice_roll', 1, { type, roll })
+          }
+        }
       } else {
-        const roll = diceService.roll(type)
-
-        message.channel.send(`${message.author} ${i18n.tn('dice_roll', 1, { type, roll })}`)
+        response = i18n.t('dice_not_supported', { type })
       }
     } else {
-      message.channel.send(`Dice ${type} not supported!`)
+      response = i18n.t('arg_syntax_error', { example: '3d20+4, d12-2' })
     }
 
+    message.channel.send(`${message.author} ${response}`)
     message.delete()
   },
 }

@@ -1,6 +1,15 @@
 const fs = require('fs')
 const Discord = require('discord.js')
-const { prefix, token } = require('./config.json')
+const { prefix, token } = loadConfig()
+
+function loadConfig() {
+  try {
+    return require('./config.json')
+  } catch (error) {
+    console.error("Can't find src/config.json")
+    process.exit(1)
+  }
+}
 
 // Create client
 const client = new Discord.Client()

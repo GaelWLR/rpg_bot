@@ -1,3 +1,6 @@
 {
-  "dice_roll": "[,0] tried to roll %s dice, not very smart|[1] roll one d{{type}}, get {{roll}}|roll %sd{{type}}, get {{roll}} (total : {{rollTotal}})"
+  "arg_syntax_error": "There is a syntax error. (Ex: {{example}})",
+  "dice_not_supported": "Dice {{type}} not supported!",
+  "dice_roll": "[,0] tried to roll %s dice, not very smart|[1] roll one d{{type}}, get {{roll}}|roll %sd{{type}}, get {{roll}} (total : {{rollsTotal}})",
+  "dice_roll_with_modifier": "[,0] tried to roll %s dice, not very smart|[1] roll one d{{type}}{{modifier}}, get {{roll}}|roll %sd{{type}}{{modifier}}, get {{roll}} (total : {{rollsTotal}})"
 }
