@@ -1,15 +1,9 @@
+/** @typedef {import('discord.js').Message} Message */
 const fs = require('fs')
 const Discord = require('discord.js')
+const i18n = require('./plugins/i18n')
+const diceService = require('./services/dice')
 const { prefix, token } = loadConfig()
-
-function loadConfig() {
-  try {
-    return require('./config.json')
-  } catch (error) {
-    console.error("Can't find src/config.json")
-    process.exit(1)
-  }
-}
 
 // Create client
 const client = new Discord.Client()
@@ -23,23 +17,48 @@ for (const file of commandFiles) {
   client.commands.set(command.name, command)
 }
 
-// Gets command from server message
+// Add listener to get command from server message
 client.on('message', (message) => {
   if (message.content.startsWith(prefix)) {
     const [commandName, ...args] = message.content.slice(prefix.length).split(/ +/)
     const command = client.commands.get(commandName.toLowerCase())
 
     if (command) {
-      try {
-        command.execute(message, args)
-      } catch (error) {
-        console.error(error)
-        message.channel.send('A problem occurred during the execution of the command!')
-      }
+      executeCommand(command, args, message)
+    } else if (commandName.match(diceService.regex)) {
+      executeCommand(client.commands.get('roll'), [commandName], message)
     } else {
-      message.channel.send('Command not supported!')
+      message.channel.send(i18n.t('command_not_supported'))
     }
   }
 })
 
+// Mount client
 client.login(token)
+
+/**
+ * Load config file or throw error
+ */
+function loadConfig() {
+  try {
+    return require('./config.json')
+  } catch (error) {
+    console.error('Missing src/config.json')
+    process.exit(1)
+  }
+}
+
+/**
+ * Execute the given command and handle error
+ * @param {Object} command
+ * @param {Array} args
+ * @param {Message} message
+ */
+function executeCommand(command, args, message) {
+  try {
+    command.execute(message, args)
+  } catch (error) {
+    console.error(error)
+    message.channel.send(i18n.t('a_problem_occured'))
+  }
+}

@@ -1,6 +1,7 @@
 {
+  "a_problem_occured": "A problem occurred during the execution of the command!",
   "arg_syntax_error": "There is a syntax error. (Ex: {{example}})",
+  "command_not_supported": "Command not supported!",
   "dice_not_supported": "Dice {{type}} not supported!",
-  "dice_roll": "[,0] tried to roll %s dice, not very smart|[1] roll one d{{type}}, get {{roll}}|roll %sd{{type}}, get {{roll}} (total : {{rollsTotal}})",
-  "dice_roll_with_modifier": "[,0] tried to roll %s dice, not very smart|[1] roll one d{{type}}{{modifier}}, get {{roll}}|roll %sd{{type}}{{modifier}}, get {{roll}} (total : {{rollsTotal}})"
+  "dice_roll": "[,0] tried to roll %s dice, not very smart|[1] roll one d{{type}}{{modifierText}}, get {{roll}}|roll %sd{{type}}{{modifierText}}, get {{roll}} (total : {{rollsTotal}})"
 }

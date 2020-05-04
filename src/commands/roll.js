@@ -21,29 +21,23 @@ module.exports = {
         .map((value) => parseInt(value))
 
       if (diceService.types.includes(type)) {
+        const modifierText = modifier ? (modifier > 0 ? `+${modifier}` : modifier) : ''
+
         if (number) {
           const { rolls, rollsTotal } = diceService.multipleRoll(type, number, modifier)
           const roll = rolls.join(', ')
 
-          if (modifier) {
-            response = i18n.tn('dice_roll_with_modifier', number, { type, roll, rollsTotal, modifier })
-          } else {
-            response = i18n.tn('dice_roll', number, { type, roll, rollsTotal })
-          }
+          response = i18n.tn('dice_roll', number, { type, roll, rollsTotal, modifierText })
         } else {
           const roll = diceService.roll(type, modifier)
 
-          if (modifier) {
-            response = i18n.tn('dice_roll_with_modifier', 1, { type, roll, modifier })
-          } else {
-            response = i18n.tn('dice_roll', 1, { type, roll })
-          }
+          response = i18n.tn('dice_roll', 1, { type, roll, modifierText })
         }
       } else {
         response = i18n.t('dice_not_supported', { type })
       }
     } else {
-      response = i18n.t('arg_syntax_error', { example: '3d20+4, d12-2' })
+      response = i18n.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })
     }
 
     message.channel.send(`${message.author} ${response}`)
