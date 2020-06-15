@@ -11,7 +11,7 @@ module.exports = {
    * @returns {number}
    */
   roll(type, modifier = 0) {
-    return Math.max(Math.floor(Math.random() * (type - 1)) + 1 + modifier, 1)
+    return Math.floor(Math.random() * type) + 1 + modifier
   },
 
   /**
