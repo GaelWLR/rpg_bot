@@ -20,8 +20,8 @@ for (const file of commandFiles) {
 // Add listener to get command from server message
 client.on('message', (message) => {
   if (message.content.startsWith(prefix)) {
-    const [commandName, ...args] = message.content.slice(prefix.length).split(/ +/)
-    const command = client.commands.get(commandName.toLowerCase())
+    const [commandName, ...args] = message.content.slice(prefix.length).toLowerCase().split(/ +/)
+    const command = client.commands.get(commandName)
 
     if (command) {
       executeCommand(command, args, message)
