@@ -8,23 +8,29 @@ module.exports = {
    * Roll a dice
    * @param {number} type
    * @param {number} [modifier=0]
+   * @param {boolean} [cheat=false]
    * @returns {number}
    */
-  roll(type, modifier = 0) {
-    return Math.floor(Math.random() * type) + 1 + modifier
+  roll(type, modifier = 0, cheat = false) {
+    const min = cheat ? Math.floor((type / 4) * 3) : 1
+
+    return Math.floor(Math.random() * (type - min + 1)) + min + modifier
   },
 
   /**
    * Roll multiple dices
    * @param {number} type
    * @param {number} number
+   * @param {boolean} [cheat=false]
    * @returns {{rolls: number[], rollsTotal: number}}
    */
-  multipleRoll(type, number, modifier = 0) {
+  multipleRoll(type, number, modifier = 0, cheat = false) {
     rolls = []
+
     for (let i = 0; i < number; i++) {
-      rolls.push(this.roll(type))
+      rolls.push(this.roll(type, 0, cheat))
     }
+
     const rollsTotal = Math.max(
       rolls.reduce((previousValue, currentValue) => previousValue + currentValue, 0) + modifier,
       1

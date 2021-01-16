@@ -10,8 +10,9 @@ module.exports = {
    * Command execution
    * @param {Message} message
    * @param {string} arg
+   * @param {boolean} cheat
    */
-  execute(message, [arg]) {
+  execute(message, [arg], cheat) {
     let response = ''
 
     if (arg.match(diceService.regex)) {
@@ -24,12 +25,12 @@ module.exports = {
         const modifierText = modifier ? (modifier > 0 ? `+${modifier}` : modifier) : ''
 
         if (number) {
-          const { rolls, rollsTotal } = diceService.multipleRoll(type, number, modifier)
+          const { rolls, rollsTotal } = diceService.multipleRoll(type, number, modifier, cheat)
           const roll = rolls.join(', ')
 
           response = i18n.tn('dice_roll', number, { type, roll, rollsTotal, modifierText })
         } else {
-          const roll = diceService.roll(type, modifier)
+          const roll = diceService.roll(type, modifier, cheat)
 
           response = i18n.tn('dice_roll', 1, { type, roll, modifierText })
         }
