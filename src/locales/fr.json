@@ -4,5 +4,5 @@
   "arg_syntax_error": "Il y a une erreur de syntaxe. (Ex: {{example}})",
   "command_not_supported": "Commande non supportée!",
   "dice_not_supported": "Dé {{type}} non supporté!",
-  "dice_roll": "[,0] a essayé de lancé %s dé, pas très malin|[1] lance un d{{type}}{{modifierText}}, il fait {{roll}}|lance %sd{{type}}{{modifierText}}, il fait {{roll}} (total : {{rollsTotal}})"
+  "dice_roll": "[,0] a essayé de lancé %s dé, pas très malin.|[1] lance un d{{type}}{{modifierText}}, il fait {{roll}}.|lance %sd{{type}}{{modifierText}}, il fait {{roll}} (total : {{rollsTotal}})."
 }
