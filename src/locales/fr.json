@@ -1,5 +1,6 @@
 {
   "a_problem_occured": "Un problème est survenue lors de l'exécution de la commande!",
+  "and_he_cheated_the_villain": "Et il a triché le vilain!",
   "arg_syntax_error": "Il y a une erreur de syntaxe. (Ex: {{example}})",
   "command_not_supported": "Commande non supportée!",
   "dice_not_supported": "Dé {{type}} non supporté!",

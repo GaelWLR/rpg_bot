@@ -41,6 +41,10 @@ module.exports = {
       response = i18n.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })
     }
 
+    if (cheat) {
+      response += ' ' + i18n.t('and_he_cheated_the_villain')
+    }
+
     message.channel.send(`${message.author} ${response}`)
     message.delete()
   },
