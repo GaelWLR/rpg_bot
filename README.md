@@ -2,11 +2,25 @@
 
 This project is discord bot to play RPG on a server with my friends, and also a test for me to use discord.js.
 
-1. Install dependancies `npm i`
+## Quick start
 
-2. Update config.json
+1. Install dependencies
+```shell
+yarn
+```
 
-3. Launch bot `npm run start` or `npm run dev` for file watch
+2. Create src/config.json based on src/config_example.json
+
+
+3. Launch bot 
+```shell
+yarn start
+```
+
+4. Or launch with file watch
+```shell
+yarn dev
+```
 
 ## Features
 
