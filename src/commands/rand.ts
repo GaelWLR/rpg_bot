@@ -13,8 +13,12 @@ export const rand: Command = {
   async execute(message: Message, args: string[]) {
     const respond = (response: string) => message.channel.send(`${message.author} ${response}`);
 
-    const entriesStr = args.map((str) => replace(trim(str, ', _-'), /(, *)/, ', ')).join(', ');
-    const entries = entriesStr.split(/, /g);
+    const entries = args
+      .join(' ')
+      .split(',')
+      .map((str) => replace(trim(str, ', _-'), /(, *)/, ', '))
+      .join(', ')
+      .split(/, /g);
 
     if (entries.length === 0) {
       await respond(i18next.t('rand_missing_entries'));
