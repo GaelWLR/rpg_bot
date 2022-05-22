@@ -6,22 +6,27 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js",
-    "format": "prettier \"src/**/*.js\" --write",
-    "lint": "eslint \"src/**/*.js\" --quiet",
-    "start": "node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/index.ts",
+    "format": "prettier \"src/**/*.ts\" --write",
+    "lint": "eslint \"src/**/*.ts\" --quiet",
+    "start": "tsc && node dist/src/index.js"
   },
   "dependencies": {
     "discord.js": "^12.1.1",
-    "i18n": "^0.8.6",
-    "lodash": "^4.17.21"
+    "dotenv": "^16.0.1",
+    "i18next": "^21.8.3",
+    "lodash": "^4.17.21",
+    "typescript": "^4.6.4"
   },
   "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/lodash": "^4.14.182",
+    "@types/node": "^17.0.35",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.15.0",
     "nodemon": "^2.0.7",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "ts-node": "^10.8.0"
   },
   "volta": {
     "node": "16.8.0",

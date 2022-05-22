@@ -9,7 +9,7 @@ This project is discord bot to play RPG on a server with my friends, and also a 
 yarn
 ```
 
-2. Create src/config.json based on src/config_example.json
+2. Create .env based on .env.example
 
 
 3. Launch bot 

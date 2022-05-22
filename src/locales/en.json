@@ -1,9 +1,0 @@
-{
-  "a_problem_occured": "A problem occurred during the execution of the command!",
-  "and_he_cheated_the_villain": "And he cheated the villain!",
-  "arg_syntax_error": "There is a syntax error. (Ex: {{example}})",
-  "command_not_supported": "Command not supported!",
-  "dice_not_supported": "Dice {{type}} not supported!",
-  "dice_roll": "[,0] tried to roll %s dice, not very smart.|[1] roll one d{{type}}{{modifierText}}, get {{roll}}.|roll %sd{{type}}{{modifierText}}, get {{roll}} (total : {{rollsTotal}}).",
-  "rand_missing_entries": "No random entries, please provide with coma separator."
-}
