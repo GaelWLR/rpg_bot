@@ -12,7 +12,7 @@
     "start": "tsc && node dist/src/index.js"
   },
   "dependencies": {
-    "discord.js": "12",
+    "discord.js": "13",
     "dotenv": "^16.0.1",
     "i18next": "^22.0.1",
     "lodash": "^4.17.21",

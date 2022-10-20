@@ -1,4 +1,4 @@
-import {Client as DiscordClient, Collection} from 'discord.js';
+import { Client as DiscordClient, Collection, Intents } from 'discord.js';
 
 import { Command } from './types';
 import * as commands from './commands';
@@ -7,7 +7,7 @@ export default class Client extends DiscordClient {
   public commands: Collection<string, Command>;
 
   constructor() {
-    super();
+    super({ intents: [Intents.FLAGS.GUILDS] });
 
     this.commands = new Collection();
 
