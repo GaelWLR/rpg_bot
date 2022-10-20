@@ -36,7 +36,7 @@ export const roll: Command = {
 
     if (number) {
       const { rolls, rollsTotal } = diceService.multipleRoll(type, number, modifier, cheat);
-      const response = i18next.t('dice_roll', {
+      const response: string = i18next.t('dice_roll', {
         count: number,
         modifierText,
         number,
@@ -51,7 +51,7 @@ export const roll: Command = {
     }
 
     const roll = diceService.roll(type, modifier, cheat);
-    const response = i18next.t('dice_roll', { count: 1, modifierText, roll, type });
+    const response: string = i18next.t('dice_roll', { count: 1, modifierText, roll, type });
 
     cheat ? await respondWithCheat(response) : await respond(response);
 

@@ -1,4 +1,4 @@
-import { Client as DiscordClient, Collection } from 'discord.js';
+import {Client as DiscordClient, Collection} from 'discord.js';
 
 import { Command } from './types';
 import * as commands from './commands';
