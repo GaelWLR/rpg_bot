@@ -7,7 +7,9 @@ export default class Client extends DiscordClient {
   public commands: Collection<string, Command>;
 
   constructor() {
-    super({ intents: [GatewayIntentBits.Guilds] });
+    super({
+      intents: [GatewayIntentBits.GuildMessages, GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent],
+    });
 
     this.commands = new Collection();
 

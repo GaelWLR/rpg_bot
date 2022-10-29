@@ -4,6 +4,7 @@ import Client from './Client';
 import diceService from './services/dice';
 import { roll } from './commands';
 import { executeCommand, loadConfig } from './utils';
+import { Events } from 'discord.js';
 
 // Load config
 const { prefix, token } = loadConfig();
@@ -12,7 +13,7 @@ const { prefix, token } = loadConfig();
 const client = new Client();
 
 // Add listener to get command from server message
-client.on('message', async (message) => {
+client.on(Events.MessageCreate, async (message) => {
   if (message.content.startsWith(prefix)) {
     const [commandName, ...args] = message.content.slice(prefix.length).toLowerCase().split(/ +/);
     const command = client.commands.get(commandName);

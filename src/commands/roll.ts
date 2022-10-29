@@ -23,7 +23,7 @@ export const roll: Command = {
 
     const [number, type, modifier] = arg
       .toLowerCase()
-      .split(/d|(?=[+\-])/g)
+      .split(/d|(?=[+-])/g)
       .map((value) => parseInt(value));
 
     if (!diceService.types.includes(type)) {
