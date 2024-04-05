@@ -9,7 +9,7 @@ import { Command } from '../types';
  */
 export async function executeCommand(command: Command, args: string[], message: Message) {
   try {
-    command.execute(message, args);
+    await command.execute(message, args);
   } catch (error) {
     console.error(error);
 

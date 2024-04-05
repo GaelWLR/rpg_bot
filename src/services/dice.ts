@@ -9,6 +9,12 @@ export default {
 
   regex: /^(\d*)?(d\d+)([+-]\d+)?$/g,
 
+  parseDiceArg(arg: string) {
+    const [number, type, modifier] =  arg.toLowerCase().split(/d|(?=[+-])/g).map((value) => parseInt(value));
+
+    return { number, type, modifier };
+  },
+
   /**
    * Roll a dice
    */
