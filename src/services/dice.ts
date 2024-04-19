@@ -10,7 +10,10 @@ export default {
   regex: /^(\d*)?(d\d+)([+-]\d+)?$/g,
 
   parseDiceArg(arg: string) {
-    const [number, type, modifier] =  arg.toLowerCase().split(/d|(?=[+-])/g).map((value) => parseInt(value));
+    const [number, type, modifier] = arg
+      .toLowerCase()
+      .split(/d|(?=[+-])/g)
+      .map((value) => parseInt(value));
 
     return { number, type, modifier };
   },
@@ -28,7 +31,7 @@ export default {
    * Roll multiple dices
    */
   multipleRoll(type: number, number: number, modifier = 0, cheat = false) {
-    let rolls = [];
+    const rolls = [];
 
     for (let i = 0; i < number; i++) {
       rolls.push(this.roll(type, 0, cheat));
