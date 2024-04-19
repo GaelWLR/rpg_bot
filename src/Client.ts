@@ -1,7 +1,7 @@
 import { Client as DiscordClient, Collection, GatewayIntentBits } from 'discord.js';
 
-import { Command } from './types';
-import * as commands from './commands';
+import { Command } from './types/index.js';
+import * as commands from './commands/index.js';
 
 export default class Client extends DiscordClient {
   public commands: Collection<string, Command>;

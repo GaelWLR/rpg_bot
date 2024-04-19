@@ -5,29 +5,31 @@
   "author": "Gaël Weiler",
   "license": "MIT",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "build": "tsc",
     "dev": "nodemon src/index.ts",
     "format": "prettier \"src/**/*.ts\" --write",
     "lint": "eslint \"src/**/*.ts\" --quiet",
     "start": "tsc && node dist/src/index.js"
   },
   "dependencies": {
-    "discord.js": "^14.6.0",
-    "dotenv": "^16.0.1",
-    "i18next": "^22.0.1",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.5",
+    "i18next": "^23.11.2",
     "lodash": "^4.17.21",
-    "typescript": "^4.6.4"
+    "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.182",
-    "@types/node": "^18.11.2",
-    "@typescript-eslint/eslint-plugin": "^5.40.1",
-    "@typescript-eslint/parser": "^5.40.1",
+    "@types/lodash": "^4.17.0",
+    "@types/node": "^20.12.7",
+    "@typescript-eslint/eslint-plugin": "^7.7.0",
+    "@typescript-eslint/parser": "^7.7.0",
     "eslint": "^8.25.0",
-    "eslint-config-prettier": "^8.5.0",
-    "nodemon": "^2.0.7",
-    "prettier": "^2.2.1",
-    "ts-node": "^10.8.0"
+    "eslint-config-prettier": "^9.1.0",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2"
   },
   "volta": {
     "node": "20.12.1",

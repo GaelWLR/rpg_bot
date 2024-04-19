@@ -1,10 +1,10 @@
 import { Message } from 'discord.js';
-import { replace, trim } from 'lodash';
+import replace from 'lodash/replace.js';
+import trim from 'lodash/trim.js';
 
-import i18next from '../plugins/i18next';
-
-import { Command } from '../types';
-import { randomEntry } from '../utils';
+import { i18n } from '../plugins/index.js';
+import { Command } from '../types/index.js';
+import { randomEntry } from '../utils/index.js';
 
 export const rand: Command = {
   name: 'rand',
@@ -12,7 +12,7 @@ export const rand: Command = {
   description: 'Select a random entry',
 
   async execute(message: Message, args: string[]) {
-    let responseMessage = i18next.t('a_problem_occurred');
+    let responseMessage = i18n.t('a_problem_occurred');
 
     const entries = args
       .join(' ')
@@ -22,9 +22,9 @@ export const rand: Command = {
       .split(/, /g);
 
     if (!entries.length) {
-      responseMessage = i18next.t('rand_missing_entries');
+      responseMessage = i18n.t('rand_missing_entries');
     } else {
-      responseMessage = i18next.t('rand_drawn', { entry: randomEntry(entries), entries: entries.join(', ') });
+      responseMessage = i18n.t('rand_drawn', { entry: randomEntry(entries), entries: entries.join(', ') });
     }
 
     await message.channel.send(`${message.author} ${responseMessage}`);

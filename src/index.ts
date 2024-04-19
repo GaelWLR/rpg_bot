@@ -1,10 +1,11 @@
-import i18next from './plugins/i18next';
-
-import Client from './Client';
-import diceService from './services/dice';
-import { roll } from './commands';
-import { executeCommand, loadConfig } from './utils';
 import { Events } from 'discord.js';
+
+import Client from './Client.js';
+
+import { roll } from './commands/index.js';
+import { i18n } from './plugins/index.js';
+import diceService from './services/dice.js';
+import { executeCommand, loadConfig } from './utils/index.js';
 
 // Load config
 const { prefix, token } = loadConfig();
@@ -23,7 +24,7 @@ client.on(Events.MessageCreate, async (message) => {
     } else if (commandName.match(diceService.regex)) {
       await executeCommand(roll, [commandName], message);
     } else {
-      await message.channel.send(`${i18next.t('command_not_supported')}`);
+      await message.channel.send(`${i18n.t('command_not_supported')}`);
     }
   }
 });

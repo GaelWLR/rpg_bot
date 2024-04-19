@@ -1,4 +1,4 @@
-import { random } from 'lodash';
+import random from 'lodash/random.js';
 
 export const randomEntry = <T>(entries: T[]): T => {
   if (!entries.length) {

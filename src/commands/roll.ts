@@ -1,8 +1,8 @@
 import { Message } from 'discord.js';
 
-import i18next from '../plugins/i18next';
-import diceService from '../services/dice';
-import { Command } from '../types';
+import { i18n } from '../plugins/index.js';
+import diceService from '../services/dice.js';
+import { Command } from '../types/index.js';
 
 export const roll: Command = {
   name: 'roll',
@@ -15,7 +15,7 @@ export const roll: Command = {
     const respond = (response: string) => message.channel.send(`${message.author} ${response}`);
 
     if (!arg.match(diceService.regex)) {
-      await message.channel.send(`${i18next.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })}`);
+      await message.channel.send(`${i18n.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })}`);
 
       return;
     }
@@ -23,7 +23,7 @@ export const roll: Command = {
     const { number, type, modifier } = diceService.parseDiceArg(arg);
 
     if (!diceService.types.includes(type)) {
-      await message.channel.send(`${i18next.t('dice_not_supported', { type })}`);
+      await message.channel.send(`${i18n.t('dice_not_supported', { type })}`);
 
       return;
     }
@@ -32,7 +32,7 @@ export const roll: Command = {
 
     if (number) {
       const { rolls, rollsTotal } = diceService.multipleRoll(type, number, modifier);
-      const response: string = i18next.t('dice_roll', {
+      const response: string = i18n.t('dice_roll', {
         count: number,
         modifierText,
         number,
@@ -44,7 +44,7 @@ export const roll: Command = {
       await respond(response);
     } else {
       const roll = diceService.roll(type, modifier);
-      const response: string = i18next.t('dice_roll', { count: 1, modifierText, roll, type });
+      const response: string = i18n.t('dice_roll', { count: 1, modifierText, roll, type });
 
       await respond(response);
     }

@@ -1,9 +1,8 @@
 import { Message } from 'discord.js';
 
-import i18next from '../plugins/i18next';
-
-import { Command } from '../types';
-import { randomEntry } from '../utils';
+import { i18n } from '../plugins/index.js';
+import { Command } from '../types/index.js';
+import { randomEntry } from '../utils/index.js';
 
 export const insult: Command = {
   name: 'insult',
@@ -16,7 +15,7 @@ export const insult: Command = {
     const mentionedUsers = message.mentions.users.map((user) => user.toString());
 
     const insultsKey = mentionedUsers.length > 1 ? 'insults_plural' : 'insults';
-    const insults = i18next.t(insultsKey).split(',');
+    const insults = i18n.t(insultsKey).split(',');
 
     await message.channel.send(`${mentionedUsers.join(' ')} ${randomEntry(insults)}`);
   },

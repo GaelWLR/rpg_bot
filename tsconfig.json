@@ -1,27 +1,20 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "types": ["dotenv", "lodash", "node"],
-    "typeRoots": ["node_modules/@types"],
-    "module": "commonjs",
+    "esModuleInterop": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "outDir": "dist",
-    "rootDir": "./",
     "removeComments": true,
-    "strict": true,
+    "rootDir": "./",
     "skipLibCheck": true,
-    "strictNullChecks": true,
-    "noImplicitThis": true,
-    "inlineSourceMap": true,
-    "moduleResolution": "node",
-    "sourceRoot": "src",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "target": "ESNext",
+    "types": []
   },
   "include": [
-    "src"
+    "src/**/*.ts",
   ],
   "exclude": [
-    "dist",
-    "node_modules"
+    "dist/**/*",
+    "node_modules/**/*",
   ]
 }

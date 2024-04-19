@@ -1,5 +1,5 @@
-export { game } from './game';
-export { insult } from './insult';
-export { rand } from './rand';
-export { roll } from './roll';
-export { rollCheat } from './rollCheat';
+export { game } from './game.js';
+export { insult } from './insult.js';
+export { rand } from './rand.js';
+export { roll } from './roll.js';
+export { rollCheat } from './rollCheat.js';

@@ -1,8 +1,7 @@
 import { Message } from 'discord.js';
 
-import i18next from '../plugins/i18next';
-
-import { Command } from '../types';
+import { i18n } from '../plugins/index.js';
+import { Command } from '../types/index.js';
 
 /**
  * Execute the given command and handle error
@@ -13,6 +12,6 @@ export async function executeCommand(command: Command, args: string[], message: 
   } catch (error) {
     console.error(error);
 
-    await message.channel.send(`${i18next.t('a_problem_occurred')}`);
+    await message.channel.send(`${i18n.t('a_problem_occurred')}`);
   }
 }

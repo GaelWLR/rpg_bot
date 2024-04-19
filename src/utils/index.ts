@@ -1,3 +1,3 @@
-export { executeCommand } from './executeCommand';
-export { loadConfig } from './loadConfig';
-export { randomEntry } from './randomEntry';
+export { executeCommand } from './executeCommand.js';
+export { loadConfig } from './loadConfig.js';
+export { randomEntry } from './randomEntry.js';
