@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
 
 import { i18n } from '../plugins/index.js';
-import { Command } from '../types/index.js';
+import { Command, isTextBasedChannel } from '../types/index.js';
 import { randomEntry } from '../utils/index.js';
 
 export const game: Command = {
@@ -24,6 +24,8 @@ export const game: Command = {
       response = `${message.author} ${i18n.t('game_drawn', { game })}`;
     }
 
-    await message.channel.send(response);
+    if (isTextBasedChannel(message.channel)) {
+      await message.channel.send(response);
+    }
   },
 };

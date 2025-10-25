@@ -1,6 +1,6 @@
 import { i18n } from '../plugins/index.js';
 import diceService from '../services/dice.js';
-import { Command } from '../types/index.js';
+import { Command, isTextBasedChannel } from '../types/index.js';
 
 export const rollCheat: Command = {
   name: 'cheat',
@@ -10,11 +10,16 @@ export const rollCheat: Command = {
   async execute(message, [arg]) {
     await message.delete();
 
+    if (!isTextBasedChannel(message.channel)) {
+      return;
+    }
+
+    const channel = message.channel;
     const respond = (response: string) =>
-      message.channel.send(`${message.author} ${response} ${i18n.t('and_he_cheated_the_villain')}`);
+      channel.send(`${message.author} ${response} ${i18n.t('and_he_cheated_the_villain')}`);
 
     if (!arg.match(diceService.regex)) {
-      await message.channel.send(`${i18n.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })}`);
+      await channel.send(`${i18n.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })}`);
 
       return;
     }
@@ -22,7 +27,7 @@ export const rollCheat: Command = {
     const { number, type, modifier } = diceService.parseDiceArg(arg);
 
     if (!diceService.types.includes(type)) {
-      await message.channel.send(`${i18n.t('dice_not_supported', { type })}`);
+      await channel.send(`${i18n.t('dice_not_supported', { type })}`);
 
       return;
     }

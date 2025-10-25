@@ -8,7 +8,7 @@
     "rootDir": "./",
     "skipLibCheck": true,
     "target": "ESNext",
-    "types": []
+    "types": ["node"]
   },
   "include": [
     "src/**/*.ts",

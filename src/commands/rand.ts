@@ -3,7 +3,7 @@ import replace from 'lodash/replace.js';
 import trim from 'lodash/trim.js';
 
 import { i18n } from '../plugins/index.js';
-import { Command } from '../types/index.js';
+import { Command, isTextBasedChannel } from '../types/index.js';
 import { randomEntry } from '../utils/index.js';
 
 export const rand: Command = {
@@ -27,6 +27,8 @@ export const rand: Command = {
       responseMessage = i18n.t('rand_drawn', { entry: randomEntry(entries), entries: entries.join(', ') });
     }
 
-    await message.channel.send(`${message.author} ${responseMessage}`);
+    if (isTextBasedChannel(message.channel)) {
+      await message.channel.send(`${message.author} ${responseMessage}`);
+    }
   },
 };

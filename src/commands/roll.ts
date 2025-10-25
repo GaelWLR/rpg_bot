@@ -2,7 +2,7 @@ import { Message } from 'discord.js';
 
 import { i18n } from '../plugins/index.js';
 import diceService from '../services/dice.js';
-import { Command } from '../types/index.js';
+import { Command, isTextBasedChannel } from '../types/index.js';
 
 export const roll: Command = {
   name: 'roll',
@@ -12,10 +12,15 @@ export const roll: Command = {
   async execute(message: Message, [arg]: string[]): Promise<void> {
     await message.delete();
 
-    const respond = (response: string) => message.channel.send(`${message.author} ${response}`);
+    if (!isTextBasedChannel(message.channel)) {
+      return;
+    }
+
+    const channel = message.channel;
+    const respond = (response: string) => channel.send(`${message.author} ${response}`);
 
     if (!arg.match(diceService.regex)) {
-      await message.channel.send(`${i18n.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })}`);
+      await channel.send(`${i18n.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })}`);
 
       return;
     }
@@ -23,7 +28,7 @@ export const roll: Command = {
     const { number, type, modifier } = diceService.parseDiceArg(arg);
 
     if (!diceService.types.includes(type)) {
-      await message.channel.send(`${i18n.t('dice_not_supported', { type })}`);
+      await channel.send(`${i18n.t('dice_not_supported', { type })}`);
 
       return;
     }
