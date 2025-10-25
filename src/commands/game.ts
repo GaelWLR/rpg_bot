@@ -12,7 +12,10 @@ export const game: Command = {
   async execute(message: Message): Promise<void> {
     await message.delete();
 
-    const games = (process.env.RAND_GAMES ?? '').split(',');
+    const games = (process.env.RAND_GAMES ?? '')
+      .split(',')
+      .map((game) => game.trim())
+      .filter((game) => game.length > 0);
 
     let response = i18n.t('a_problem_occurred');
 

@@ -18,7 +18,7 @@ export const rollCheat: Command = {
     const respond = (response: string) =>
       channel.send(`${message.author} ${response} ${i18n.t('and_he_cheated_the_villain')}`);
 
-    if (!arg.match(diceService.regex)) {
+    if (!arg || !arg.match(diceService.regex)) {
       await channel.send(`${i18n.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })}`);
 
       return;
@@ -32,7 +32,9 @@ export const rollCheat: Command = {
       return;
     }
 
-    const modifierText = modifier ? (modifier > 0 ? `+${modifier}` : modifier) : '';
+    const modifierText = modifier !== undefined && !isNaN(modifier)
+      ? (modifier > 0 ? `+${modifier}` : modifier.toString())
+      : '';
 
     if (number) {
       const { rolls, rollsTotal } = diceService.multipleRoll(type, number, modifier, true);

@@ -10,6 +10,7 @@ export const fr = {
     dice_roll_zero: 'a essayé de lancé 0 dé, pas très malin.',
     game_drawn: 'a tiré "{{game}}"',
     game_empty: "Pas de jeux fournis, contactez l'administrateur pour en ajouter.",
+    insult_no_mention: "Vous devez mentionner au moins un utilisateur pour utiliser cette commande.",
     insults: 'Idiot,Crétin,Imbécile,Abruti,Connard,Salopard,Bouffon,Débile,Larve,Nul',
     insults_plural: 'Idiots,Crétins,Imbéciles,Abrutis,Connards,Salopards,Bouffons,Débiles,Larves,Nuls',
     rand_drawn: 'a tiré "{{entry}}" parmis "{{entries}}"',

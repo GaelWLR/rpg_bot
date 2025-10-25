@@ -19,7 +19,7 @@ export const roll: Command = {
     const channel = message.channel;
     const respond = (response: string) => channel.send(`${message.author} ${response}`);
 
-    if (!arg.match(diceService.regex)) {
+    if (!arg || !arg.match(diceService.regex)) {
       await channel.send(`${i18n.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })}`);
 
       return;
@@ -33,7 +33,9 @@ export const roll: Command = {
       return;
     }
 
-    const modifierText = modifier ? (modifier > 0 ? `+${modifier}` : modifier) : '';
+    const modifierText = modifier !== undefined && !isNaN(modifier)
+      ? (modifier > 0 ? `+${modifier}` : modifier.toString())
+      : '';
 
     if (number) {
       const { rolls, rollsTotal } = diceService.multipleRoll(type, number, modifier);

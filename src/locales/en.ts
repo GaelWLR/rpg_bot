@@ -10,6 +10,7 @@ export const en = {
     dice_roll_zero: 'tried to roll 0 dice, not very smart.',
     game_drawn: 'drew "{{game}}"',
     game_empty: 'No games provided, contact the administrator to add some.',
+    insult_no_mention: 'You must mention at least one user to use this command.',
     insults: 'Idiot,Moron,Imbecile,Asshole,Dickhead,Shithead,Clown,Stupid,Worm,Zero',
     insults_plural: 'Idiots,Morons,Imbeciles,Assholes,Dickheads,Shitheads,Clowns,Stupids,Worms,Zeros',
     rand_drawn: 'drew "{{entry}}" from "{{entries}}"',
