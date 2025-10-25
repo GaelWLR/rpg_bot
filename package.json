@@ -11,7 +11,7 @@
     "dev": "nodemon src/index.ts",
     "format": "prettier \"src/**/*.ts\" --write",
     "lint": "eslint \"src/**/*.ts\" --quiet",
-    "start": "tsc && node dist/src/index.js"
+    "start": "tsc && node dist/index.js"
   },
   "dependencies": {
     "discord.js": "^14.24.0",
