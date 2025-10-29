@@ -7,8 +7,16 @@ export const rollCheat: Command = {
   name: 'cheat',
 
   description: {
+    cs: 'Hodit kostkami s vylepšenými výsledky',
+    de: 'Würfeln mit verbesserten Ergebnissen',
     en: 'Roll dice with boosted results',
+    es: 'Lanzar dados con resultados mejorados',
     fr: 'Lancer des dés avec résultats truqués',
+    it: 'Lanciare dadi con risultati potenziati',
+    nl: 'Gooi dobbelstenen met verbeterde resultaten',
+    pl: 'Rzucać kośćmi z ulepszonymi wynikami',
+    pt: 'Lançar dados com resultados melhorados',
+    sv: 'Kasta tärningar med förbättrade resultat',
   },
 
   example: '{PREFIX}cheat 2d20+5',

@@ -9,8 +9,16 @@ export const game_add: Command = {
   name: 'game_add',
 
   description: {
+    cs: 'Přidat hru do seznamu',
+    de: 'Spiel zur Liste hinzufügen',
     en: 'Add a game to the random game pool',
+    es: 'Agregar un juego a la lista',
     fr: 'Ajouter un jeu à la liste des jeux aléatoires',
+    it: 'Aggiungere un gioco alla lista',
+    nl: 'Voeg een spel toe aan de lijst',
+    pl: 'Dodać grę do listy',
+    pt: 'Adicionar um jogo à lista',
+    sv: 'Lägg till ett spel i listan',
   },
 
   example: '{PREFIX}game_add Darktide',

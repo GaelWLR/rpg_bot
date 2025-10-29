@@ -9,8 +9,16 @@ export const roll: Command = {
   name: 'roll',
 
   description: {
+    cs: 'Hodit jednu nebo více kostek',
+    de: 'Einen oder mehrere Würfel werfen',
     en: 'Roll one or more dice',
+    es: 'Lanzar uno o más dados',
     fr: 'Lancer un ou plusieurs dés',
+    it: 'Lanciare uno o più dadi',
+    nl: 'Gooi één of meerdere dobbelstenen',
+    pl: 'Rzucić jedną lub więcej kości',
+    pt: 'Lançar um ou mais dados',
+    sv: 'Kasta en eller flera tärningar',
   },
 
   example: '{PREFIX}roll 2d6+3',

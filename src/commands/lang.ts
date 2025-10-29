@@ -9,8 +9,16 @@ export const lang: Command = {
   name: 'lang',
 
   description: {
-    en: 'Set the bot language for this server (en/fr)',
-    fr: 'Définir la langue du bot pour ce serveur (en/fr)',
+    cs: 'Nastavit jazyk bota pro tento server (cs/de/en/es/fr/it/nl/pl/pt/sv)',
+    de: 'Sprache des Bots für diesen Server festlegen (cs/de/en/es/fr/it/nl/pl/pt/sv)',
+    en: 'Set the bot language for this server (cs/de/en/es/fr/it/nl/pl/pt/sv)',
+    es: 'Establecer el idioma del bot para este servidor (cs/de/en/es/fr/it/nl/pl/pt/sv)',
+    fr: 'Définir la langue du bot pour ce serveur (cs/de/en/es/fr/it/nl/pl/pt/sv)',
+    it: 'Imposta la lingua del bot per questo server (cs/de/en/es/fr/it/nl/pl/pt/sv)',
+    nl: 'Stel de bottaal in voor deze server (cs/de/en/es/fr/it/nl/pl/pt/sv)',
+    pl: 'Ustaw język bota dla tego serwera (cs/de/en/es/fr/it/nl/pl/pt/sv)',
+    pt: 'Definir o idioma do bot para este servidor (cs/de/en/es/fr/it/nl/pl/pt/sv)',
+    sv: 'Ställ in botens språk för denna server (cs/de/en/es/fr/it/nl/pl/pt/sv)',
   },
 
   example: '{PREFIX}lang en',
@@ -34,7 +42,9 @@ export const lang: Command = {
       return;
     }
 
-    if (lang !== 'en' && lang !== 'fr') {
+    const validLanguages = ['cs', 'de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'sv'];
+
+    if (!validLanguages.includes(lang)) {
       await message.channel.send(`${message.author} ${i18n.t('language_invalid')}`);
 
       return;

@@ -9,8 +9,16 @@ export const game_remove: Command = {
   name: 'game_remove',
 
   description: {
+    cs: 'Odebrat hru ze seznamu',
+    de: 'Spiel aus der Liste entfernen',
     en: 'Remove a game from the random game pool',
+    es: 'Eliminar un juego de la lista',
     fr: 'Retirer un jeu de la liste des jeux aléatoires',
+    it: 'Rimuovere un gioco dalla lista',
+    nl: 'Verwijder een spel van de lijst',
+    pl: 'Usunąć grę z listy',
+    pt: 'Remover um jogo da lista',
+    sv: 'Ta bort ett spel från listan',
   },
 
   example: '{PREFIX}game_remove Darktide',

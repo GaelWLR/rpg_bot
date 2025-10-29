@@ -9,8 +9,16 @@ export const game_list: Command = {
   name: 'game_list',
 
   description: {
+    cs: 'Zobrazit všechny dostupné hry',
+    de: 'Alle verfügbaren Spiele auflisten',
     en: 'List all available games in the pool',
+    es: 'Listar todos los juegos disponibles',
     fr: 'Lister tous les jeux disponibles',
+    it: 'Elencare tutti i giochi disponibili',
+    nl: 'Lijst van alle beschikbare spellen',
+    pl: 'Wyświetl wszystkie dostępne gry',
+    pt: 'Listar todos os jogos disponíveis',
+    sv: 'Lista alla tillgängliga spel',
   },
 
   example: '{PREFIX}game_list',

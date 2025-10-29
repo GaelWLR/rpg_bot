@@ -3,7 +3,7 @@ import { join } from 'path';
 
 const LANGUAGES_DIR = join(process.cwd(), 'data', 'languages');
 
-type SupportedLanguage = 'en' | 'fr';
+type SupportedLanguage = 'cs' | 'de' | 'en' | 'es' | 'fr' | 'it' | 'nl' | 'pl' | 'pt' | 'sv';
 
 interface LanguageData {
   language: SupportedLanguage;
@@ -42,7 +42,9 @@ export function loadLanguage(guildId: string): SupportedLanguage {
     const data = readFileSync(filePath, 'utf-8');
     const parsed = JSON.parse(data) as LanguageData;
 
-    if (parsed.language === 'en' || parsed.language === 'fr') {
+    const supportedLanguages: SupportedLanguage[] = ['cs', 'de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'sv'];
+
+    if (supportedLanguages.includes(parsed.language as SupportedLanguage)) {
       return parsed.language;
     }
 

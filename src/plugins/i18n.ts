@@ -1,12 +1,12 @@
 import i18next from 'i18next';
 
-import { en, fr } from '../locales/index.js';
+import { cs, de, en, es, fr, it, nl, pl, pt, sv } from '../locales/index.js';
 
 i18next.init({
   lng: 'fr',
   fallbackLng: 'en',
   debug: false,
-  resources: { en, fr },
+  resources: { cs, de, en, es, fr, it, nl, pl, pt, sv },
 });
 
 export const i18n = i18next;

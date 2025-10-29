@@ -9,8 +9,16 @@ export const game: Command = {
   name: 'game',
 
   description: {
-    en: 'Chose a random game to play',
+    cs: 'Vybrat náhodnou hru',
+    de: 'Zufälliges Spiel wählen',
+    en: 'Choose a random game to play',
+    es: 'Elegir un juego aleatorio',
     fr: 'Choisir un jeu aléatoire',
+    it: 'Scegliere un gioco casuale',
+    nl: 'Kies een willekeurig spel',
+    pl: 'Wybrać losową grę',
+    pt: 'Escolher um jogo aleatório',
+    sv: 'Välj ett slumpmässigt spel',
   },
 
   example: '{PREFIX}game',

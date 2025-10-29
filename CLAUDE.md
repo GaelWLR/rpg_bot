@@ -41,8 +41,16 @@ This is a **prefix-based Discord bot** (not slash commands) built with TypeScrip
 {
   name: string;
   description: {
-    en: string;
-    fr: string;
+    cs?: string;  // Optional Czech description
+    de?: string;  // Optional German description
+    en: string;   // Required English description
+    es?: string;  // Optional Spanish description
+    fr: string;   // Required French description
+    it?: string;  // Optional Italian description
+    nl?: string;  // Optional Dutch description
+    pl?: string;  // Optional Polish description
+    pt?: string;  // Optional Portuguese description
+    sv?: string;  // Optional Swedish description
   };
   example?: string;  // Optional usage example (supports {PREFIX} placeholder)
   execute: (message: Message, args: string[]) => Promise<void>;
@@ -101,24 +109,26 @@ Located in `src/services/languageStorage.ts`. Provides guild-specific persistent
 
 **Storage Details**:
 - **Location**: `data/languages/{guildId}.json` (git-ignored)
-- **Format**: JSON object with language code (`{ "language": "en" }` or `{ "language": "fr" }`)
+- **Format**: JSON object with language code (e.g., `{ "language": "en" }`)
+- **Supported languages**: cs (Czech), de (German), en (English), es (Spanish), fr (French), it (Italian), nl (Dutch), pl (Polish), pt (Portuguese), sv (Swedish)
 - **Guild-specific**: Each Discord server has its own language preference
 - **Default**: Returns 'fr' when no preference is saved
 
 **API**:
-- `loadLanguage(guildId)` - Load guild's language preference (returns 'en' | 'fr')
+- `loadLanguage(guildId)` - Load guild's language preference (returns 'cs' | 'de' | 'en' | 'es' | 'fr' | 'it' | 'nl' | 'pl' | 'pt' | 'sv')
 - `saveLanguage(guildId, language)` - Save guild's language preference
 - **Auto-initialization**: Creates directory structure automatically on first use
 
 ## Internationalization (i18n)
 
 - **Default language**: French (fallback: English)
+- **Supported languages**: Czech (cs), German (de), English (en), Spanish (es), French (fr), Italian (it), Dutch (nl), Polish (pl), Portuguese (pt), Swedish (sv)
 - **Guild-specific language**: Each server can configure its preferred language via `lang` command
 - **Dynamic switching**: Language is loaded per-guild before each command execution
-- **Translations**: `src/locales/en.ts` and `src/locales/fr.ts`
+- **Translations**: `src/locales/cs.ts`, `src/locales/de.ts`, `src/locales/en.ts`, `src/locales/es.ts`, `src/locales/fr.ts`, `src/locales/it.ts`, `src/locales/nl.ts`, `src/locales/pl.ts`, `src/locales/pt.ts`, `src/locales/sv.ts`
 - **Configuration**: `src/plugins/i18n.ts`
 - **Usage**: `i18next.t('translation.key', { variable: value })`
-- **Bilingual commands**: All commands include both English and French descriptions
+- **Multilingual commands**: Commands include descriptions in multiple languages (at minimum English and French)
 - Supports pluralization for context-aware translations
 
 ## Configuration

@@ -8,8 +8,16 @@ export const insult: Command = {
   name: 'insult',
 
   description: {
+    cs: 'Urazit zmíněné uživatele náhodnou urážkou',
+    de: 'Erwähnte Benutzer mit zufälliger Beleidigung beleidigen',
     en: 'Insult mentioned users with a random entry',
+    es: 'Insultar a los usuarios mencionados con una entrada aleatoria',
     fr: 'Insulter les utilisateurs mentionnés avec une entrée aléatoire',
+    it: 'Insultare gli utenti menzionati con una voce casuale',
+    nl: 'Beledig vermelde gebruikers met een willekeurige belediging',
+    pl: 'Obrazić wspomnianych użytkowników losową obelgą',
+    pt: 'Insultar usuários mencionados com uma entrada aleatória',
+    sv: 'Förolämpa nämnda användare med en slumpmässig förolämpning',
   },
 
   example: '{PREFIX}insult @user1 @user2',

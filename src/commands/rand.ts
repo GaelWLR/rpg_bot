@@ -8,8 +8,16 @@ export const rand: Command = {
   name: 'rand',
 
   description: {
+    cs: 'Vybrat náhodnou položku',
+    de: 'Zufälligen Eintrag auswählen',
     en: 'Select a random entry',
+    es: 'Seleccionar una entrada aleatoria',
     fr: 'Sélectionner une entrée aléatoire',
+    it: 'Selezionare una voce casuale',
+    nl: 'Selecteer een willekeurige keuze',
+    pl: 'Wybrać losowy wpis',
+    pt: 'Selecionar uma entrada aleatória',
+    sv: 'Välj en slumpmässig post',
   },
 
   example: '{PREFIX}rand choice1, choice2, choice3',

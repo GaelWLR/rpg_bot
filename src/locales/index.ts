@@ -1,2 +1,10 @@
+export { cs } from './cs.js';
+export { de } from './de.js';
 export { en } from './en.js';
+export { es } from './es.js';
 export { fr } from './fr.js';
+export { it } from './it.js';
+export { nl } from './nl.js';
+export { pl } from './pl.js';
+export { pt } from './pt.js';
+export { sv } from './sv.js';
