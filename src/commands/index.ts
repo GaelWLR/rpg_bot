@@ -4,6 +4,7 @@ export { game_add } from './game_add.js';
 export { game_list } from './game_list.js';
 export { game_remove } from './game_remove.js';
 export { insult } from './insult.js';
+export { lang } from './lang.js';
 export { rand } from './rand.js';
 export { roll } from './roll.js';
 export { rollCheat } from './rollCheat.js';

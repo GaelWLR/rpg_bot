@@ -19,12 +19,14 @@ A Discord bot for playing RPGs with friends, featuring dice rolling and utility 
 
 ### 🛠️ Utility Commands
 - **Commands**: List all available commands with usage examples
+- **Lang**: Set the bot language for your server (English/French)
 - **Rand**: Randomly select an item from a list
 - **Insult**: Send a random insult to a mentioned user
 
 ### 🌍 Internationalization
 - Multilingual support (French and English)
 - Default language: French
+- Guild-specific language configuration (each server can set its own language)
 
 ## 🚀 Installation
 
@@ -81,6 +83,11 @@ yarn start
 !game_list         # View all games in your guild's list
 !game              # Randomly select from your guild's games
 !game_remove Darktide
+
+# Language configuration (persistent per guild)
+!lang en           # Set server language to English
+!lang fr           # Set server language to French
+!lang              # Show current server language
 
 # Random selection
 !rand Pizza, Burger, Sushi

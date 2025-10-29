@@ -51,10 +51,11 @@ This is a **prefix-based Discord bot** (not slash commands) built with TypeScrip
 
 **Message Handling Flow**:
 1. Listen for messages starting with PREFIX (from env)
-2. Parse command name and arguments
-3. Look up command in Collection or check for dice notation pattern
-4. Execute via `executeCommand` wrapper (handles errors with i18n messages)
-5. Delete user's command message for clean chat
+2. Load guild-specific language and set i18n context
+3. Parse command name and arguments
+4. Look up command in Collection or check for dice notation pattern
+5. Execute via `executeCommand` wrapper (handles errors with i18n messages)
+6. Delete user's command message for clean chat
 
 **Special Case**: Dice notation (e.g., `2d6+3`) can be used directly without the `roll` command.
 
@@ -94,9 +95,26 @@ Located in `src/services/gameStorage.ts`. Provides guild-specific persistent fil
 - `removeGame(guildId, game)` - Remove game (returns false if not found)
 - **Auto-initialization**: Creates directory structure automatically on first use
 
+### Language Storage Service
+
+Located in `src/services/languageStorage.ts`. Provides guild-specific persistent language preferences.
+
+**Storage Details**:
+- **Location**: `data/languages/{guildId}.json` (git-ignored)
+- **Format**: JSON object with language code (`{ "language": "en" }` or `{ "language": "fr" }`)
+- **Guild-specific**: Each Discord server has its own language preference
+- **Default**: Returns 'fr' when no preference is saved
+
+**API**:
+- `loadLanguage(guildId)` - Load guild's language preference (returns 'en' | 'fr')
+- `saveLanguage(guildId, language)` - Save guild's language preference
+- **Auto-initialization**: Creates directory structure automatically on first use
+
 ## Internationalization (i18n)
 
 - **Default language**: French (fallback: English)
+- **Guild-specific language**: Each server can configure its preferred language via `lang` command
+- **Dynamic switching**: Language is loaded per-guild before each command execution
 - **Translations**: `src/locales/en.ts` and `src/locales/fr.ts`
 - **Configuration**: `src/plugins/i18n.ts`
 - **Usage**: `i18next.t('translation.key', { variable: value })`

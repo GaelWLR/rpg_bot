@@ -5,6 +5,7 @@ import Client from './Client.js';
 import { roll } from './commands/index.js';
 import { i18n } from './plugins/index.js';
 import diceService from './services/dice.js';
+import { loadLanguage } from './services/languageStorage.js';
 import { executeCommand, loadConfig } from './utils/index.js';
 
 // Load config
@@ -16,6 +17,12 @@ const client = new Client();
 // Add listener to get command from server message
 client.on(Events.MessageCreate, async (message) => {
   if (message.content.startsWith(prefix)) {
+    if (message.guildId) {
+      const guildLang = loadLanguage(message.guildId);
+
+      await i18n.changeLanguage(guildLang);
+    }
+
     const [commandName, ...args] = message.content.slice(prefix.length).toLowerCase().split(/ +/);
     const command = client.commands.get(commandName);
 
