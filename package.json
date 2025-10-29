@@ -33,6 +33,9 @@
     "tsx": "^4.20.6",
     "typescript-eslint": "^8.46.2"
   },
+  "resolutions": {
+    "braces": "^3.0.3"
+  },
   "volta": {
     "node": "24.11.0",
     "yarn": "4.10.3"
