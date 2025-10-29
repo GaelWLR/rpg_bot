@@ -3,6 +3,7 @@ import { Message } from 'discord.js';
 import { i18n } from '../plugins/index.js';
 import diceService from '../services/dice.js';
 import { Command } from '../types/index.js';
+import { ensureSendableChannel } from '../utils/index.js';
 
 export const roll: Command = {
   name: 'roll',
@@ -10,29 +11,22 @@ export const roll: Command = {
   description: 'Roll one or more dice',
 
   async execute(message: Message, [arg]: string[]): Promise<void> {
+    ensureSendableChannel(message);
     await message.delete();
 
     const respond = async (response: string) => {
-      if (message.channel.isSendable()) {
-        await message.channel.send(`${message.author} ${response}`);
-      }
+      await message.channel.send(`${message.author} ${response}`);
     };
 
     if (!arg.match(diceService.regex)) {
-      if (message.channel.isSendable()) {
-        await message.channel.send(`${i18n.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })}`);
-      }
-
+      await message.channel.send(`${i18n.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })}`);
       return;
     }
 
     const { number, type, modifier } = diceService.parseDiceArg(arg);
 
     if (!diceService.types.includes(type)) {
-      if (message.channel.isSendable()) {
-        await message.channel.send(`${i18n.t('dice_not_supported', { type })}`);
-      }
-
+      await message.channel.send(`${i18n.t('dice_not_supported', { type })}`);
       return;
     }
 

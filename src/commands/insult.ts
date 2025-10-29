@@ -2,7 +2,7 @@ import { Message } from 'discord.js';
 
 import { i18n } from '../plugins/index.js';
 import { Command } from '../types/index.js';
-import { randomEntry } from '../utils/index.js';
+import { ensureSendableChannel, randomEntry } from '../utils/index.js';
 
 export const insult: Command = {
   name: 'insult',
@@ -10,6 +10,7 @@ export const insult: Command = {
   description: 'Insult mentioned users with a random entry',
 
   async execute(message: Message) {
+    ensureSendableChannel(message);
     await message.delete();
 
     const mentionedUsers = message.mentions.users.map((user) => user.toString());
@@ -17,8 +18,6 @@ export const insult: Command = {
     const insultsKey = mentionedUsers.length > 1 ? 'insults_plural' : 'insults';
     const insults = i18n.t(insultsKey).split(',');
 
-    if (message.channel.isSendable()) {
-      await message.channel.send(`${mentionedUsers.join(' ')} ${randomEntry(insults)}`);
-    }
+    await message.channel.send(`${mentionedUsers.join(' ')} ${randomEntry(insults)}`);
   },
 };

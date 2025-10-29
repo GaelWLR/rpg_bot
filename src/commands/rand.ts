@@ -4,7 +4,7 @@ import trim from 'lodash/trim.js';
 
 import { i18n } from '../plugins/index.js';
 import { Command } from '../types/index.js';
-import { randomEntry } from '../utils/index.js';
+import { ensureSendableChannel, randomEntry } from '../utils/index.js';
 
 export const rand: Command = {
   name: 'rand',
@@ -12,6 +12,8 @@ export const rand: Command = {
   description: 'Select a random entry',
 
   async execute(message: Message, args: string[]) {
+    ensureSendableChannel(message);
+
     let responseMessage = i18n.t('a_problem_occurred');
 
     const entries = args
@@ -27,8 +29,6 @@ export const rand: Command = {
       responseMessage = i18n.t('rand_drawn', { entry: randomEntry(entries), entries: entries.join(', ') });
     }
 
-    if (message.channel.isSendable()) {
-      await message.channel.send(`${message.author} ${responseMessage}`);
-    }
+    await message.channel.send(`${message.author} ${responseMessage}`);
   },
 };

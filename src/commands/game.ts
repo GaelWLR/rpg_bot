@@ -2,7 +2,7 @@ import { Message } from 'discord.js';
 
 import { i18n } from '../plugins/index.js';
 import { Command } from '../types/index.js';
-import { randomEntry } from '../utils/index.js';
+import { ensureSendableChannel, randomEntry } from '../utils/index.js';
 
 export const game: Command = {
   name: 'game',
@@ -10,6 +10,7 @@ export const game: Command = {
   description: 'Chose a random game to play',
 
   async execute(message: Message): Promise<void> {
+    ensureSendableChannel(message);
     await message.delete();
 
     const games = (process.env.RAND_GAMES ?? '').split(',');
@@ -24,8 +25,6 @@ export const game: Command = {
       response = `${message.author} ${i18n.t('game_drawn', { game })}`;
     }
 
-    if (message.channel.isSendable()) {
-      await message.channel.send(response);
-    }
+    await message.channel.send(response);
   },
 };

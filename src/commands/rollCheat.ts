@@ -1,6 +1,7 @@
 import { i18n } from '../plugins/index.js';
 import diceService from '../services/dice.js';
 import { Command } from '../types/index.js';
+import { ensureSendableChannel } from '../utils/index.js';
 
 export const rollCheat: Command = {
   name: 'cheat',
@@ -8,29 +9,22 @@ export const rollCheat: Command = {
   description: 'Cheat on another command',
 
   async execute(message, [arg]) {
+    ensureSendableChannel(message);
     await message.delete();
 
     const respond = async (response: string) => {
-      if (message.channel.isSendable()) {
-        await message.channel.send(`${message.author} ${response} ${i18n.t('and_he_cheated_the_villain')}`);
-      }
+      await message.channel.send(`${message.author} ${response} ${i18n.t('and_he_cheated_the_villain')}`);
     };
 
     if (!arg.match(diceService.regex)) {
-      if (message.channel.isSendable()) {
-        await message.channel.send(`${i18n.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })}`);
-      }
-
+      await message.channel.send(`${i18n.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })}`);
       return;
     }
 
     const { number, type, modifier } = diceService.parseDiceArg(arg);
 
     if (!diceService.types.includes(type)) {
-      if (message.channel.isSendable()) {
-        await message.channel.send(`${i18n.t('dice_not_supported', { type })}`);
-      }
-
+      await message.channel.send(`${i18n.t('dice_not_supported', { type })}`);
       return;
     }
 
