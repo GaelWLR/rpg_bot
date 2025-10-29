@@ -27,6 +27,8 @@ export const rand: Command = {
       responseMessage = i18n.t('rand_drawn', { entry: randomEntry(entries), entries: entries.join(', ') });
     }
 
-    await message.channel.send(`${message.author} ${responseMessage}`);
+    if (message.channel.isSendable()) {
+      await message.channel.send(`${message.author} ${responseMessage}`);
+    }
   },
 };

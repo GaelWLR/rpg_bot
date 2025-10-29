@@ -24,6 +24,8 @@ export const game: Command = {
       response = `${message.author} ${i18n.t('game_drawn', { game })}`;
     }
 
-    await message.channel.send(response);
+    if (message.channel.isSendable()) {
+      await message.channel.send(response);
+    }
   },
 };

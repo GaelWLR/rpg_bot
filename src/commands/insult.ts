@@ -17,6 +17,8 @@ export const insult: Command = {
     const insultsKey = mentionedUsers.length > 1 ? 'insults_plural' : 'insults';
     const insults = i18n.t(insultsKey).split(',');
 
-    await message.channel.send(`${mentionedUsers.join(' ')} ${randomEntry(insults)}`);
+    if (message.channel.isSendable()) {
+      await message.channel.send(`${mentionedUsers.join(' ')} ${randomEntry(insults)}`);
+    }
   },
 };

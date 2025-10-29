@@ -12,10 +12,16 @@ export const roll: Command = {
   async execute(message: Message, [arg]: string[]): Promise<void> {
     await message.delete();
 
-    const respond = (response: string) => message.channel.send(`${message.author} ${response}`);
+    const respond = async (response: string) => {
+      if (message.channel.isSendable()) {
+        await message.channel.send(`${message.author} ${response}`);
+      }
+    };
 
     if (!arg.match(diceService.regex)) {
-      await message.channel.send(`${i18n.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })}`);
+      if (message.channel.isSendable()) {
+        await message.channel.send(`${i18n.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })}`);
+      }
 
       return;
     }
@@ -23,7 +29,9 @@ export const roll: Command = {
     const { number, type, modifier } = diceService.parseDiceArg(arg);
 
     if (!diceService.types.includes(type)) {
-      await message.channel.send(`${i18n.t('dice_not_supported', { type })}`);
+      if (message.channel.isSendable()) {
+        await message.channel.send(`${i18n.t('dice_not_supported', { type })}`);
+      }
 
       return;
     }

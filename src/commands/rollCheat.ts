@@ -10,11 +10,16 @@ export const rollCheat: Command = {
   async execute(message, [arg]) {
     await message.delete();
 
-    const respond = (response: string) =>
-      message.channel.send(`${message.author} ${response} ${i18n.t('and_he_cheated_the_villain')}`);
+    const respond = async (response: string) => {
+      if (message.channel.isSendable()) {
+        await message.channel.send(`${message.author} ${response} ${i18n.t('and_he_cheated_the_villain')}`);
+      }
+    };
 
     if (!arg.match(diceService.regex)) {
-      await message.channel.send(`${i18n.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })}`);
+      if (message.channel.isSendable()) {
+        await message.channel.send(`${i18n.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })}`);
+      }
 
       return;
     }
@@ -22,7 +27,9 @@ export const rollCheat: Command = {
     const { number, type, modifier } = diceService.parseDiceArg(arg);
 
     if (!diceService.types.includes(type)) {
-      await message.channel.send(`${i18n.t('dice_not_supported', { type })}`);
+      if (message.channel.isSendable()) {
+        await message.channel.send(`${i18n.t('dice_not_supported', { type })}`);
+      }
 
       return;
     }

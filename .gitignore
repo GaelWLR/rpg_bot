@@ -21,3 +21,8 @@ yarn-error.log*
 
 # Cache
 .cache/
+
+# Yarn 4
+.yarn/
+!.yarn/releases
+!.yarn/plugins

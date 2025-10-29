@@ -12,6 +12,8 @@ export async function executeCommand(command: Command, args: string[], message: 
   } catch (error) {
     console.error(error);
 
-    await message.channel.send(`${i18n.t('a_problem_occurred')}`);
+    if (message.channel.isSendable()) {
+      await message.channel.send(`${i18n.t('a_problem_occurred')}`);
+    }
   }
 }
