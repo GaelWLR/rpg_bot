@@ -6,7 +6,10 @@ import { ensureSendableChannel } from '../utils/index.js';
 export const rollCheat: Command = {
   name: 'cheat',
 
-  description: 'Roll dice with boosted results',
+  description: {
+    en: 'Roll dice with boosted results',
+    fr: 'Lancer des dés avec résultats truqués',
+  },
 
   example: '{PREFIX}cheat 2d20+5',
 

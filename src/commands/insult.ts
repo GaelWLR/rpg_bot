@@ -7,7 +7,10 @@ import { ensureSendableChannel, randomEntry } from '../utils/index.js';
 export const insult: Command = {
   name: 'insult',
 
-  description: 'Insult mentioned users with a random entry',
+  description: {
+    en: 'Insult mentioned users with a random entry',
+    fr: 'Insulter les utilisateurs mentionnés avec une entrée aléatoire',
+  },
 
   example: '{PREFIX}insult @user1 @user2',
 

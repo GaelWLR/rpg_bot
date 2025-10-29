@@ -8,7 +8,10 @@ import { ensureSendableChannel } from '../utils/index.js';
 export const roll: Command = {
   name: 'roll',
 
-  description: 'Roll one or more dice',
+  description: {
+    en: 'Roll one or more dice',
+    fr: 'Lancer un ou plusieurs dés',
+  },
 
   example: '{PREFIX}roll 2d6+3',
 

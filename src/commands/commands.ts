@@ -8,7 +8,10 @@ import { ensureSendableChannel } from '../utils/index.js';
 export const commands: Command = {
   name: 'commands',
 
-  description: 'List all available commands',
+  description: {
+    en: 'List all available commands',
+    fr: 'Lister toutes les commandes disponibles',
+  },
 
   example: '{PREFIX}commands',
 
@@ -19,10 +22,12 @@ export const commands: Command = {
 
     const client = message.client as Client;
     const prefix = process.env.PREFIX ?? '';
+    const lang = i18n.language as 'en' | 'fr';
     const commandsList = Array.from(client.commands.values())
       .map((cmd) => {
+        const description = cmd.description[lang] || cmd.description.en;
         const example = cmd.example ? ` - \`${cmd.example.replace('{PREFIX}', prefix)}\`` : '';
-        return `**${cmd.name}**: ${cmd.description}${example}`;
+        return `**${cmd.name}**: ${description}${example}`;
       })
       .sort()
       .join('\n');

@@ -7,7 +7,10 @@ import { ensureSendableChannel, randomEntry } from '../utils/index.js';
 export const rand: Command = {
   name: 'rand',
 
-  description: 'Select a random entry',
+  description: {
+    en: 'Select a random entry',
+    fr: 'Sélectionner une entrée aléatoire',
+  },
 
   example: '{PREFIX}rand choice1, choice2, choice3',
 

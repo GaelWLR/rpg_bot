@@ -7,7 +7,10 @@ import { ensureSendableChannel, randomEntry } from '../utils/index.js';
 export const game: Command = {
   name: 'game',
 
-  description: 'Chose a random game to play',
+  description: {
+    en: 'Chose a random game to play',
+    fr: 'Choisir un jeu aléatoire',
+  },
 
   example: '{PREFIX}game',
 
