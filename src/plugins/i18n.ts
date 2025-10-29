@@ -5,7 +5,7 @@ import { en, fr } from '../locales/index.js';
 i18next.init({
   lng: 'fr',
   fallbackLng: 'en',
-  debug: true,
+  debug: false,
   resources: { en, fr },
 });
 
