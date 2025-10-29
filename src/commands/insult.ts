@@ -9,6 +9,8 @@ export const insult: Command = {
 
   description: 'Insult mentioned users with a random entry',
 
+  example: '{PREFIX}insult @user1 @user2',
+
   async execute(message: Message) {
     ensureSendableChannel(message);
 

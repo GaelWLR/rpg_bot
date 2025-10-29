@@ -9,6 +9,8 @@ export const rand: Command = {
 
   description: 'Select a random entry',
 
+  example: '{PREFIX}rand choice1, choice2, choice3',
+
   async execute(message: Message, args: string[]) {
     ensureSendableChannel(message);
 

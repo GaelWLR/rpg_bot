@@ -10,6 +10,8 @@ export const roll: Command = {
 
   description: 'Roll one or more dice',
 
+  example: '{PREFIX}roll 2d6+3',
+
   async execute(message: Message, [arg]: string[]): Promise<void> {
     ensureSendableChannel(message);
 

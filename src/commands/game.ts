@@ -9,6 +9,8 @@ export const game: Command = {
 
   description: 'Chose a random game to play',
 
+  example: '{PREFIX}game',
+
   async execute(message: Message): Promise<void> {
     ensureSendableChannel(message);
 

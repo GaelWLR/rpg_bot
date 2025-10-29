@@ -6,7 +6,9 @@ import { ensureSendableChannel } from '../utils/index.js';
 export const rollCheat: Command = {
   name: 'cheat',
 
-  description: 'Cheat on another command',
+  description: 'Roll dice with boosted results',
+
+  example: '{PREFIX}cheat 2d20+5',
 
   async execute(message, [arg]) {
     ensureSendableChannel(message);
