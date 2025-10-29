@@ -14,7 +14,7 @@ export const fr = {
     game_added: 'a ajouté "{{game}}" à la liste des jeux.',
     game_already_exists: '"{{game}}" est déjà dans la liste.',
     game_drawn: 'a tiré "{{game}}"',
-    game_empty: "Pas de jeux fournis, contactez l'administrateur pour en ajouter.",
+    game_empty: "Aucun jeu dans la liste. Utilisez la commande game_add pour en ajouter.",
     game_list: 'Jeux disponibles ({{count}}):',
     game_not_found: '"{{game}}" introuvable dans la liste.',
     game_remove_missing_name: 'Veuillez fournir un nom de jeu.',
