@@ -1,6 +1,4 @@
 import { Message } from 'discord.js';
-import replace from 'lodash/replace.js';
-import trim from 'lodash/trim.js';
 
 import { i18n } from '../plugins/index.js';
 import { Command } from '../types/index.js';
@@ -14,20 +12,24 @@ export const rand: Command = {
   async execute(message: Message, args: string[]) {
     ensureSendableChannel(message);
 
-    let responseMessage = i18n.t('a_problem_occurred');
+    await message.delete();
 
     const entries = args
       .join(' ')
       .split(',')
-      .map((str) => replace(trim(str, ', _-'), /(, *)/, ', '))
-      .join(', ')
-      .split(/, /g);
+      .map((entry) => entry.trim())
+      .filter((entry) => entry);
 
     if (!entries.length) {
-      responseMessage = i18n.t('rand_missing_entries');
-    } else {
-      responseMessage = i18n.t('rand_drawn', { entry: randomEntry(entries), entries: entries.join(', ') });
+      await message.channel.send(i18n.t('rand_missing_entries'));
+
+      return;
     }
+
+    const responseMessage = i18n.t('rand_drawn', {
+      entry: randomEntry(entries),
+      entries: entries.join(', '),
+    });
 
     await message.channel.send(`${message.author} ${responseMessage}`);
   },

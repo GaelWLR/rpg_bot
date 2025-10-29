@@ -11,20 +11,22 @@ export const game: Command = {
 
   async execute(message: Message): Promise<void> {
     ensureSendableChannel(message);
+
     await message.delete();
 
-    const games = (process.env.RAND_GAMES ?? '').split(',');
-
-    let response = i18n.t('a_problem_occurred');
+    const games = (process.env.RAND_GAMES ?? '')
+      .split(',')
+      .map((game) => game.trim())
+      .filter((game) => game);
 
     if (!games.length) {
-      response = i18n.t('game_empty');
-    } else {
-      const game = randomEntry(games);
+      await message.channel.send(i18n.t('game_empty'));
 
-      response = `${message.author} ${i18n.t('game_drawn', { game })}`;
+      return;
     }
 
-    await message.channel.send(response);
+    const game = randomEntry(games);
+
+    await message.channel.send(`${message.author} ${i18n.t('game_drawn', { game })}`);
   },
 };

@@ -10,14 +10,12 @@ export const rollCheat: Command = {
 
   async execute(message, [arg]) {
     ensureSendableChannel(message);
+
     await message.delete();
 
-    const respond = async (response: string) => {
-      await message.channel.send(`${message.author} ${response} ${i18n.t('and_he_cheated_the_villain')}`);
-    };
-
-    if (!arg.match(diceService.regex)) {
+    if (!arg || !arg.match(diceService.regex)) {
       await message.channel.send(`${i18n.t('arg_syntax_error', { example: 'd4, 3d20+4, d12-2' })}`);
+
       return;
     }
 
@@ -25,28 +23,22 @@ export const rollCheat: Command = {
 
     if (!diceService.types.includes(type)) {
       await message.channel.send(`${i18n.t('dice_not_supported', { type })}`);
+
       return;
     }
 
     const modifierText = modifier ? (modifier > 0 ? `+${modifier}` : modifier) : '';
 
-    if (number) {
-      const { rolls, rollsTotal } = diceService.multipleRoll(type, number, modifier, true);
-      const response: string = i18n.t('dice_roll', {
-        count: number,
-        modifierText,
-        number,
-        roll: rolls.join(', '),
-        rollsTotal,
-        type,
-      });
+    const rollData = number
+      ? { ...diceService.multipleRoll(type, number, modifier, true), count: number, number }
+      : { roll: diceService.roll(type, modifier, true), count: 1 };
 
-      await respond(response);
-    } else {
-      const roll = diceService.roll(type, modifier, true);
-      const response: string = i18n.t('dice_roll', { count: 1, modifierText, roll, type });
+    const response = i18n.t('dice_roll', {
+      ...rollData,
+      modifierText,
+      type,
+    });
 
-      await respond(response);
-    }
+    await message.channel.send(`${message.author} ${response} ${i18n.t('and_he_cheated_the_villain')}`);
   },
 };

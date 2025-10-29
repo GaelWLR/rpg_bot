@@ -11,12 +11,22 @@ export const insult: Command = {
 
   async execute(message: Message) {
     ensureSendableChannel(message);
+
     await message.delete();
 
     const mentionedUsers = message.mentions.users.map((user) => user.toString());
 
     const insultsKey = mentionedUsers.length > 1 ? 'insults_plural' : 'insults';
-    const insults = i18n.t(insultsKey).split(',');
+    const insults = i18n
+      .t(insultsKey)
+      .split(',')
+      .filter((insult) => insult.trim());
+
+    if (!insults.length) {
+      await message.channel.send(i18n.t('insults_empty'));
+
+      return;
+    }
 
     await message.channel.send(`${mentionedUsers.join(' ')} ${randomEntry(insults)}`);
   },

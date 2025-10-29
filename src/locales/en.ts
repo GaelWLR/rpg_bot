@@ -11,6 +11,7 @@ export const en = {
     game_drawn: 'drew "{{game}}"',
     game_empty: 'No games provided, contact the administrator to add some.',
     insults: 'Idiot,Moron,Imbecile,Asshole,Dickhead,Shithead,Clown,Stupid,Worm,Zero',
+    insults_empty: 'No insults available, contact the administrator to add some.',
     insults_plural: 'Idiots,Morons,Imbeciles,Assholes,Dickheads,Shitheads,Clowns,Stupids,Worms,Zeros',
     rand_drawn: 'drew "{{entry}}" from "{{entries}}"',
     rand_missing_entries: 'No random entries, please provide with coma separator.',

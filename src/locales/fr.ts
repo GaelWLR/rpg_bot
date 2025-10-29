@@ -11,6 +11,7 @@ export const fr = {
     game_drawn: 'a tiré "{{game}}"',
     game_empty: "Pas de jeux fournis, contactez l'administrateur pour en ajouter.",
     insults: 'Idiot,Crétin,Imbécile,Abruti,Connard,Salopard,Bouffon,Débile,Larve,Nul',
+    insults_empty: "Pas d'insultes disponibles, contactez l'administrateur pour en ajouter.",
     insults_plural: 'Idiots,Crétins,Imbéciles,Abrutis,Connards,Salopards,Bouffons,Débiles,Larves,Nuls',
     rand_drawn: 'a tiré "{{entry}}" parmis "{{entries}}"',
     rand_missing_entries: "Pas d'entrées fournies, utilisez des mots séparés par des virgules.",
