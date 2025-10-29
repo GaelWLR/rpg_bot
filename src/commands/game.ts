@@ -1,6 +1,7 @@
 import { Message } from 'discord.js';
 
 import { i18n } from '../plugins/index.js';
+import { loadGames } from '../services/gameStorage.js';
 import { Command } from '../types/index.js';
 import { ensureSendableChannel, randomEntry } from '../utils/index.js';
 
@@ -19,10 +20,11 @@ export const game: Command = {
 
     await message.delete();
 
-    const games = (process.env.RAND_GAMES ?? '')
-      .split(',')
-      .map((game) => game.trim())
-      .filter((game) => game);
+    if (!message.guildId) {
+      return;
+    }
+
+    const games = loadGames(message.guildId);
 
     if (!games.length) {
       await message.channel.send(i18n.t('game_empty'));
