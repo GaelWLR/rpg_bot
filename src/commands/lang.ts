@@ -5,6 +5,14 @@ import { loadLanguage, saveLanguage } from '../services/languageStorage.js';
 import { Command } from '../types/index.js';
 import { ensureSendableChannel } from '../utils/index.js';
 
+const SUPPORTED_LANGUAGES = ['cs', 'de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'sv'] as const;
+
+type SupportedLanguage = typeof SUPPORTED_LANGUAGES[number];
+
+function isSupportedLanguage(lang: string): lang is SupportedLanguage {
+  return SUPPORTED_LANGUAGES.includes(lang as SupportedLanguage);
+}
+
 export const lang: Command = {
   name: 'lang',
 
@@ -32,9 +40,9 @@ export const lang: Command = {
       return;
     }
 
-    const lang = args[0]?.toLowerCase().trim();
+    const inputLang = args[0]?.toLowerCase().trim();
 
-    if (!lang) {
+    if (!inputLang) {
       const currentLang = loadLanguage(message.guildId);
 
       await message.channel.send(`${message.author} ${i18n.t('language_current', { language: currentLang })}`);
@@ -42,17 +50,15 @@ export const lang: Command = {
       return;
     }
 
-    const validLanguages = ['cs', 'de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'sv'];
-
-    if (!validLanguages.includes(lang)) {
+    if (!isSupportedLanguage(inputLang)) {
       await message.channel.send(`${message.author} ${i18n.t('language_invalid')}`);
 
       return;
     }
 
-    saveLanguage(message.guildId, lang);
-    await i18n.changeLanguage(lang);
+    saveLanguage(message.guildId, inputLang);
+    await i18n.changeLanguage(inputLang);
 
-    await message.channel.send(`${message.author} ${i18n.t('language_set', { language: lang })}`);
+    await message.channel.send(`${message.author} ${i18n.t('language_set', { language: inputLang })}`);
   },
 };
