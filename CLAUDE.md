@@ -40,7 +40,11 @@ This is a **prefix-based Discord bot** (not slash commands) built with TypeScrip
 ```typescript
 {
   name: string;
-  description: string;
+  description: {
+    en: string;
+    fr: string;
+  };
+  example?: string;  // Optional usage example (supports {PREFIX} placeholder)
   execute: (message: Message, args: string[]) => Promise<void>;
 }
 ```
@@ -62,7 +66,9 @@ This is a **prefix-based Discord bot** (not slash commands) built with TypeScrip
 4. Use i18n for user-facing strings: `i18next.t('key')`
 5. Handle errors gracefully - they're caught by executeCommand wrapper
 
-## Dice Service
+## Services
+
+### Dice Service
 
 Located in `src/services/dice.ts`. Provides stateless dice rolling functionality.
 
@@ -72,12 +78,29 @@ Located in `src/services/dice.ts`. Provides stateless dice rolling functionality
 
 **Cheat Mode**: Weighted rolls with minimum 75% of max possible value.
 
+### Game Storage Service
+
+Located in `src/services/gameStorage.ts`. Provides guild-specific persistent file storage for game lists.
+
+**Storage Details**:
+- **Location**: `data/games/{guildId}.json` (git-ignored)
+- **Format**: JSON array of game names, automatically sorted alphabetically
+- **Guild-specific**: Each Discord server maintains its own independent game list
+
+**API**:
+- `loadGames(guildId)` - Load guild's game list
+- `saveGames(guildId, games)` - Save guild's game list
+- `addGame(guildId, game)` - Add game (returns false if duplicate)
+- `removeGame(guildId, game)` - Remove game (returns false if not found)
+- **Auto-initialization**: Creates directory structure automatically on first use
+
 ## Internationalization (i18n)
 
 - **Default language**: French (fallback: English)
-- **Translations**: `src/locales/en.json` and `src/locales/fr.json`
+- **Translations**: `src/locales/en.ts` and `src/locales/fr.ts`
 - **Configuration**: `src/plugins/i18n.ts`
 - **Usage**: `i18next.t('translation.key', { variable: value })`
+- **Bilingual commands**: All commands include both English and French descriptions
 - Supports pluralization for context-aware translations
 
 ## Configuration
@@ -85,15 +108,15 @@ Located in `src/services/dice.ts`. Provides stateless dice rolling functionality
 **Environment Variables** (`.env`):
 - `DISCORD_TOKEN` - **Required** Discord bot token
 - `PREFIX` - Command prefix (optional, defaults to empty string)
-- `RAND_GAMES` - Comma-separated list for `game` command
 
 **Module System**: ES Modules with NodeNext resolution (not CommonJS).
 
 ## Technical Notes
 
-- **No persistent storage**: All state is ephemeral (in-memory only)
-- **Node version**: v20.12.1 (managed via Volta)
-- **Package manager**: Yarn v1.22.19
+- **Persistent storage**: Guild-specific game lists stored in `data/games/` as JSON files
+- **Node version**: v24.11.0 (managed via Volta)
+- **Package manager**: Yarn v4.10.3 (managed via Volta)
 - **Build output**: Compiled to `dist/` directory (git-ignored)
+- **Development**: Uses `tsx` for hot reload
 - **Message cleanup**: Bot deletes user command messages automatically
 - **Error responses**: Include bot mention and use i18n translations

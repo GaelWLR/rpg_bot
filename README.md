@@ -11,9 +11,15 @@ A Discord bot for playing RPGs with friends, featuring dice rolling and utility 
   - Direct notation without command: `2d6+3`
 - **Cheat**: Roll dice with guaranteed minimum result (75% of maximum)
 
-### 🎮 Utility Commands
+### 🎮 Game Management
+- **Game**: Randomly select a game from your guild's persistent list
+- **Game Add**: Add games to your guild's list
+- **Game Remove**: Remove games from your guild's list
+- **Game List**: View all games in your guild's list
+
+### 🛠️ Utility Commands
+- **Commands**: List all available commands with usage examples
 - **Rand**: Randomly select an item from a list
-- **Game**: Randomly select a game from a configured list
 - **Insult**: Send a random insult to a mentioned user
 
 ### 🌍 Internationalization
@@ -23,8 +29,8 @@ A Discord bot for playing RPGs with friends, featuring dice rolling and utility 
 ## 🚀 Installation
 
 ### Prerequisites
-- Node.js v20+
-- Yarn
+- Node.js v24+ (v20+ minimum)
+- Yarn v4+
 
 ### Setup
 
@@ -44,7 +50,6 @@ Configure environment variables:
 ```env
 DISCORD_TOKEN=your_discord_bot_token
 PREFIX=!                                    # Optional, defaults to !
-RAND_GAMES=Game1,Game2,Game3               # Game list for the game command
 ```
 
 3. **Start the bot**
@@ -70,9 +75,18 @@ yarn start
 # Roll with cheat (75% minimum)
 !cheat 1d20
 
+# Game management (persistent per guild)
+!game_add Darktide
+!game_add "Vermintide 2"
+!game_list         # View all games in your guild's list
+!game              # Randomly select from your guild's games
+!game_remove Darktide
+
 # Random selection
 !rand Pizza, Burger, Sushi
-!game           # Selects a game from the configured list
+
+# List all commands with examples
+!commands
 
 # Random insult
 !insult @user
