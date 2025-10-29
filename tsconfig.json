@@ -5,7 +5,7 @@
     "moduleResolution": "NodeNext",
     "outDir": "dist",
     "removeComments": true,
-    "rootDir": "./",
+    "rootDir": "./src",
     "skipLibCheck": true,
     "target": "ESNext",
     "types": []
